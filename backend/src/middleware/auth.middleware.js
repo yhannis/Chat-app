@@ -1,7 +1,7 @@
 
 
 import jwt from "jsonwebtoken"
-import User from "../models/user.model"
+import User from "../models/user.model.js"
 
 // next parameter calls the next function (i.e. updateProfile in route) if protect successfuly finishes
 export const protectRoute = async (req,res,next) => {
@@ -11,7 +11,7 @@ export const protectRoute = async (req,res,next) => {
         
         //contain cookie in variable if exists
         // jwt addresses how cookie was called ? named ? in controller
-        const token = res.cookie.jwt;
+        const token = req.cookies.jwt;
 
         if(!token) {
             return res.status(401).json({message: "No token provided - unauthorized."})
